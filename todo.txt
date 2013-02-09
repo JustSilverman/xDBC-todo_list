@@ -1,16 +1,13 @@
-1. [ ] Lose Lil to Danny
-2. [ ] Get hit in the eye by Danny
-3. [ ] Walk into town seeking revenge
-4. [ ] Book room at local saloon
-5. [ ] Check into room, read Gideon's bible
-6. [ ] Overhear Lil and Danny in neighboring room
-7. [ ] Burst into neighboring room, declaring showdown
-8. [ ] Get shot by Danny and collapse in corner
-9. [ ] Visit doctor
-10. [ ] Return to room, read Gideon's bible
-11. [X] call gary
-12. [X] Destroy planet
-13. [X] Go home
-14. [X] Refactor a little more
-15. [ ] Do magical things
-16. [ ] Do magical things
+1. [ ] Move with Lil to the black mountain hills of Dakota
+2. [ ] Lose Lil to Danny
+3. [X] Get hit in the eye by Danny
+4. [X] Walk into town seeking revenge
+5. [ ] Book room at local saloon
+6. [ ] Check into room, read Gideon's bible
+7. [X] Drink too much gin
+8. [ ] Overhear Lil and Danny in neighboring room
+9. [X] Burst into neighboring room, declaring showdown
+10. [X] Get shot by Danny and collapse in corner
+11. [X] Visit doctor
+12. [X] Return to room, read Gideon's bible
+13. [X] Commit and submit

@@ -3,19 +3,15 @@ require './middle_man'
 class ToDo
   def self.run(commands)
     action = commands.first
+    args = { :action => action.to_s }
 
     if action == "add"
-      args = { :task => commands[1..commands.length-1].join(" "), :action => action.to_s }
-    elsif action == "delete"
-      args = { :id => commands[1], :action => action.to_s }
-    elsif action == "complete"
-      args = { :id => commands[1], :action => action.to_s }
-    else
-      args = { :action => action.to_s }
+      args.merge!(:task => commands[1..-1].join(" "))
+    elsif action == "delete" || action == "complete"
+      args.merge!(:id => commands[1])
     end
 
     MiddleMan.new(args)
-
   end
 end
 

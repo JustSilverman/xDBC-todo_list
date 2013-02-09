@@ -22,4 +22,8 @@ class UserInterface
   def non_action
     puts "Command not recognized."
   end
+
+  def invalid_id
+    puts "Invalid id."
+  end
 end
