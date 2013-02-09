@@ -10,4 +10,5 @@
 10. [ ] Get shot by Danny and collapse in corner
 11. [ ] Visit doctor
 12. [ ] Return to room, read Gideon's bible
-13. [ ] Sing along! "D'do d'do d'do do do d'do d'do d'do"
+13. [X] call gary
+14. [X] Destroy planet

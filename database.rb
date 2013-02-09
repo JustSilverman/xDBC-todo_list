@@ -4,8 +4,8 @@ require './list_item'
 
 class Database
   
-  COMPLETION = [:complete => "[X]", :incomplete => "[ ]"]
-  attr_reader :parser, :file
+  COMPLETION = {:complete => "[X]", :incomplete => "[ ]"}
+  attr_reader :parser, :file, :list
 
   def initialize(file)
     @file   = file
@@ -21,9 +21,14 @@ class Database
     list
   end
 
+  def get_item(id)
+    list.find(id)
+  end
+
   def create_list
     list = List.new
-    self.parser.each_entry do |item_data|
+    parser.each_entry(file) do |item_data|
+      item_data["status"] = convert_status(item_data)
       list.add_item(ListItem.new(item_data))
     end
     list
@@ -33,21 +38,24 @@ class Database
     list.remove(id)
   end
 
-  def complete(id)
+  def complete_item(id)
     item = list.find(id)
-    item.status = :complete
+    item.completed!
   end
 
   def save
     File.open(file, "w") do |file|
-      list.each_with_index do |item, idx|
-        file.write("#{idx + 1}. #{COMPLETION[item.status]} #{item.task}")
+      list.list_items.each_with_index do |item, idx|
+        file.write("#{idx + 1}. #{COMPLETION[item.status]} #{item.task}\n")
       end
     end
   end
 
+  def convert_status(item_data)
+    if item_data["status"] == "[ ]"
+      :incomplete
+    else
+      :complete
+    end
+  end
 end
-
-# Reminder list
-# id integer or string
-# delete 

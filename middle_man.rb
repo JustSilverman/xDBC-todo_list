@@ -8,7 +8,6 @@ class MiddleMan
     @id             = args[:id]
     @action         = args[:action]
     @task           = args[:task]
-    @status         = args[:status]
     @database       = Database.new('todo.txt')
     @user_interface = UserInterface.new
     execute!
@@ -27,14 +26,15 @@ class MiddleMan
     else
       puts "Command not recognized."
     end
+    @database.save
   end
 
-  def task_args
-    {:id => @id, :task => @task, :status => @status}
+  def default_task_args
+    {"id" => @id, "task" => @task, "status" => :incomplete}
   end
 
   def add(task)
-    @database.add_item(ListItem.new(task_args))
+    @database.add_item(ListItem.new(default_task_args))
     @user_interface.confirm_add(@task)
   end
 
@@ -43,16 +43,18 @@ class MiddleMan
   end
 
   def send_list
-    @user_interface.dislay_list(@list)
+    @user_interface.display_list(@list)
   end
  
   def delete(id)
-    @database.delete(@id)
-    @user_interface.confirm_delete(@task)
+    item = @database.get_item(id)
+    @database.delete(item.id)
+    @user_interface.confirm_delete(item.task)
   end
 
   def complete(id)
-    @database.complete_item(@id)
-    @user_interface.confirm_complete(@task)
+    item = @database.get_item(id)
+    @database.complete_item(item.id)
+    @user_interface.confirm_complete(item.task)
   end
 end

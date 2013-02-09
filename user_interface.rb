@@ -2,8 +2,8 @@ class UserInterface
   COMPLETION = {:complete => "[X]", :incomplete => "[ ]"}
 
   def display_list(list)
-    list.each do |item|
-      puts "#{item.id} #{COMPLETION[item.status]} #{item.task}"
+    list.list_items.each do |item|
+      puts "#{item.id}. #{COMPLETION[item.status]} #{item.task}"
     end
   end
 

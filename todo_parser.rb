@@ -8,7 +8,7 @@ class TodoParser
   private
   def self.parse_line(line)
     
-    match = line.chomp.match(/^(?<id>\d+)\.\s(?<status>.{3})\s+(?<description>.+)$/)
+    match = line.chomp.match(/^(?<id>\d+)\.\s(?<status>.{3})\s+(?<task>.+)$/)
 
     Hash[match.names.zip(match.captures)]
 

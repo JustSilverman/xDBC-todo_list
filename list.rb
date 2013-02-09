@@ -1,5 +1,5 @@
 class List
-  attr_reader :list_item
+  attr_reader :list_items
 
   def initialize
     @list_items = []
@@ -13,7 +13,7 @@ class List
     @list_items.find { |item| item.id == id }
   end
 
-  def remove(item)
-    @list_items.delete(item)
+  def remove(id)
+    @list_items.delete(find(id))
   end
 end
