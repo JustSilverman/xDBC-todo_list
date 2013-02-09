@@ -14,17 +14,3 @@ class TodoParser
 
   end
 end
-
-# list = []
-# TodoParser.each_entry('todo.txt') do |list_item|
-#   list << list_item
-# end
-
-# TodoParser.each_entry('todo.txt') do |list_item|
-#   p list_item if list_item['id'] == '1'
-# end
-
-# File.open('todo.txt', "a") do |file|
-#   file << "#{15}. [X] call mom\n"
-# end
-# # p File.foreach('todo.txt').inject(0) {|c, line| c+1}

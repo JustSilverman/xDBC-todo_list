@@ -4,6 +4,8 @@ require './database'
 
 class MiddleMan
 
+  attr_reader :id, :action, :task, :database, :user_interface
+
   def initialize(args)
     @id             = args[:id]
     @action         = args[:action]
@@ -14,47 +16,40 @@ class MiddleMan
   end
 
   def execute!
-    if @action == "add"
-      self.add(@task)
-    elsif @action == "list"
-      self.get_list
-      self.send_list
-    elsif @action == "delete"
-      self.delete(@id)
-    elsif @action == "complete"
-      self.complete(@id)
+    if self.respond_to?(action.to_sym)
+      self.send(action.to_sym)
+      database.save
     else
-      puts "Command not recognized."
+      user_interface.non_action
     end
-    @database.save
   end
 
   def default_task_args
-    {"id" => @id, "task" => @task, "status" => :incomplete}
+    {"id" => id, "task" => task, "status" => :incomplete}
   end
 
-  def add(task)
-    @database.add_item(ListItem.new(default_task_args))
-    @user_interface.confirm_add(@task)
+  def add
+    database.add_item(ListItem.new(default_task_args))
+    user_interface.confirm_add(task)
   end
 
   def get_list
-    @list = @database.get_list
+    database.get_list
   end
 
-  def send_list
-    @user_interface.display_list(@list)
+  def list
+    user_interface.display_list(get_list)
   end
  
-  def delete(id)
-    item = @database.get_item(id)
-    @database.delete(item.id)
-    @user_interface.confirm_delete(item.task)
+  def delete
+    item = database.get_item(id)
+    database.delete(item.id)
+    user_interface.confirm_delete(item.task)
   end
 
-  def complete(id)
-    item = @database.get_item(id)
-    @database.complete_item(item.id)
-    @user_interface.confirm_complete(item.task)
+  def complete
+    item = database.get_item(id)
+    database.complete_item(item.id)
+    user_interface.confirm_complete(item.task)
   end
 end
